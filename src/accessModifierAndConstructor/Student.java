@@ -25,6 +25,15 @@ public class Student {
         grade = sGrade;
     }
 
+    //copy constructor -> it takes object of the same type to create a new object with same/similar values
+    public Student(Student s){
+        name = s.name;
+        roll = s.roll;
+        pass = s.pass;
+        percentage = s.percentage;
+        grade = s.grade;
+    }
+
     //parameterised constructor -> we can choose the combination of attributes to be passed
     //other attributes, for which we have not passed a value will have default values
     public Student(String sName, int sRoll){
