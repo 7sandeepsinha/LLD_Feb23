@@ -9,5 +9,6 @@ public class Client {
         a.orderPlaced();
         a.deRegisterSubscriber(wmsNotifier);
         a.orderPlaced();
+
     }
 }
