@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Amazon {
-    private List<OrderPlacedSubscriber> orderPlacedSubscribers; //WMS, Customer, Invoice
+    private List<OrderPlacedSubscriber> orderPlacedSubscribers; //WMS, CustomerNotifier, Invoice
     private List<OrderCancelledSubsriber> orderCancelledSubscribers; // Customer
     private static Amazon instance;
 
