@@ -7,3 +7,6 @@ public class ElectricParkingSpot extends ParkingSpot {
         this.eLectricCharger = eLectricCharger;
     }
 }
+
+
+// A -> B -> C  : C holds all non-private attributes and methods from both A and B

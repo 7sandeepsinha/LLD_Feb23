@@ -7,6 +7,8 @@ public class ParkingLot extends BaseModel {
     private List<ParkingFloor> parkingFloors;
     private List<Gate> gates;
     //TODO : add a flag/counter for checking whether parking lot is full or not
+    //private int remainingSpots;
+    //private boolean isSpotAvailable;
 
 
     public String getAddress() {
