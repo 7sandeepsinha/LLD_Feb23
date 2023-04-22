@@ -39,3 +39,9 @@ public class TicketController {
     4. Create and add gates to parkingLot
     5. Generate Ticket
  */
+
+/*
+    SMALL            S3 S1                                                    S2 S4 S5
+    MEDIUM
+    LARGE
+ */
