@@ -16,6 +16,42 @@ public class Game {
     private GameWinningStrategy gameWinningStrategy;
     private Player winner;
 
+    public void makeNextMove() {
+        Player toMovePlayer = players.get(nextPlayerIndex);
+
+        System.out.println("It is " + players.get(nextPlayerIndex).getName() + "'s turn.");
+
+        Move move = toMovePlayer.decideMove(this.board);
+
+        // validate move
+
+        int row = move.getCell().getRow();
+        int col = move.getCell().getCol();
+
+        System.out.println("Move happened at: " +
+                row + ", " + col + ".");
+
+        board.getBoard().get(row).get(col).setCellState(CellState.FILLED);
+        board.getBoard().get(row).get(col).setPlayer(players.get(nextPlayerIndex));
+
+        Move finalMove = new Move(
+                players.get(nextPlayerIndex),
+                board.getBoard().get(row).get(col)
+        );
+
+        this.moves.add(finalMove);
+
+        if (gameWinningStrategy.checkWinner(
+                board, players.get(nextPlayerIndex), finalMove.getCell()
+        )) {
+            gameStatus = GameStatus.WIN;
+            winner = players.get(nextPlayerIndex);
+        }
+
+        nextPlayerIndex += 1;
+        nextPlayerIndex %= players.size();
+    }
+
     public Player getWinner() {
         return winner;
     }

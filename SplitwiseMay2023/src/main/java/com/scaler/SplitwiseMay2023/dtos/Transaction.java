@@ -9,12 +9,12 @@ import lombok.Setter;
 public class Transaction {
     private User from;
     private User to;
-    private int amount;
+    private double amount;
 
     public Transaction() {
     }
 
-    public Transaction(User from, User to, int amount) {
+    public Transaction(User from, User to, double amount) {
         this.from = from;
         this.to = to;
         this.amount = amount;

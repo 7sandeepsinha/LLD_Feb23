@@ -7,6 +7,7 @@ public class Board {
     private List<List<Cell>> board;
 
     public Board(int dimension) {
+        this.board = new ArrayList<>();
         for(int i=0;i<dimension;i++){
             this.board.add(new ArrayList<>());
             for(int j=0;j<dimension;j++){
@@ -21,7 +22,7 @@ public class Board {
                 if(board.get(i).get(j).getCellState().equals(CellState.EMPTY)){
                     System.out.print("|   |");
                 } else{
-                    System.out.println("| " + board.get(i).get(j).getPlayer().getSymbol() + " |");
+                    System.out.print("| " + board.get(i).get(j).getPlayer().getSymbol() + " |");
                 }
             }
             System.out.println();

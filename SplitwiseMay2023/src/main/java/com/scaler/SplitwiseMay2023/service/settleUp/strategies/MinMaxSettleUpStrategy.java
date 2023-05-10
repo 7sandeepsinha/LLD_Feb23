@@ -12,6 +12,7 @@ public class MinMaxSettleUpStrategy implements SettleUpTransactionCalculatorStra
     @Override
     public List<Transaction> getTransactions(List<ExpenseOwingUser> expenseOwingUsers, List<ExpensePayingUser> expensePayingUsers) {
         HashMap<User, Double> debtCollectionMap = new HashMap<>();
+        List<Transaction> transactions = new ArrayList<>();
 
         //Calculating the total borrowed or lended amount for each user. Map will store the same.
         //update the owing users with negative value
@@ -53,7 +54,25 @@ public class MinMaxSettleUpStrategy implements SettleUpTransactionCalculatorStra
         }
 
         while(borrowersMinHeap.size() > 0){
-            //logic
+            UserAmountPair maxBorrower = borrowersMinHeap.poll();
+            UserAmountPair maxLendor = lendorsMaxHeap.poll();
+            if(Math.abs(maxBorrower.getAmount()) > maxLendor.getAmount()){
+                //if borrower amount is greater than lendor, then we clear up the lendor
+                maxBorrower.setAmount(maxBorrower.getAmount() + maxLendor.getAmount());
+                borrowersMinHeap.add(maxBorrower);
+                Transaction t = new Transaction(maxBorrower.getUser(), maxLendor.getUser(), maxLendor.getAmount());
+                transactions.add(t);
+            } else if(Math.abs(maxBorrower.getAmount()) < maxLendor.getAmount()){
+                //if lendor amount is greater than borrower, then we clear up the borrower
+                maxLendor.setAmount(maxLendor.getAmount() + maxBorrower.getAmount());
+                lendorsMaxHeap.add(maxLendor);
+                Transaction t = new Transaction(maxBorrower.getUser(), maxLendor.getUser(), Math.abs(maxBorrower.getAmount()));
+                transactions.add(t);
+            } else {
+                Transaction t = new Transaction(maxBorrower.getUser(), maxLendor.getUser(), maxLendor.getAmount());
+                transactions.add(t);
+            }
         }
+        return transactions;
     }
 }
